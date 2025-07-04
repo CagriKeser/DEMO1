@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+
+
 public class StandAnimations : MonoBehaviour
 {
     [Header("Objects")]
@@ -13,8 +15,8 @@ public class StandAnimations : MonoBehaviour
     [SerializeField] private float _gunStandDuration;
     
     [Header("EndTransforms")]
-    [SerializeField] private Transform _endTransform;
-    [SerializeField] private Transform _endTransform2;
+    [SerializeField] private Transform _tableEndTransform;
+    [SerializeField] private Transform _gunStandEndTransform;
     
     
     private Vector3 _tableStandPos;
@@ -26,10 +28,10 @@ public class StandAnimations : MonoBehaviour
 
     private void StartAnimation()
     {
-        _tableStand.transform.DOMove(_endTransform.position, _tableDuration).SetEase(Ease.Linear).OnComplete(() =>
+        _tableStand.transform.DOMove(_tableEndTransform.position, _tableDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
             
-            _gunStand.transform.DOMove(_endTransform2.position, _gunStandDuration).SetEase(Ease.Linear).OnComplete(() =>
+            _gunStand.transform.DOMove(_gunStandEndTransform.position, _gunStandDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 _gunStand.transform.SetParent(_tableStand.transform);
                 _tableStand.transform.DOMove(_tableStandPos, _tableDuration).SetEase(Ease.Linear).OnComplete(() =>
